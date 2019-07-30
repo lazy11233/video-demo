@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./style.css">
+
+  <title>视频</title>
+</head>
+<body>
+<button>点击播放</button>
+<div class="shadow hidden">
+  <div class="video-container">
+    <video src="" class="player"></video>
+    <div class="controller">
+      <div class="play-button">
+        <i class="iconfont v-play">&#xe618;</i>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-bar__current"></div>
+        <div class="progress-bar__circle"></div>
+      </div>
+      <div class="duration">
+        <div class="current-time">0:00</div>
+        /
+        <div class="total-time">1:00</div>
+      </div>
+      <div class="sound">
+        <div class="sound-button">
+          <i class="iconfont v-sound">&#xe662;</i>
+        </div>
+        <div class="sound-bar">
+          <div class="sound-bar__circle"></div>
+          <div class="sound-bar__current"></div>
+        </div>
+      </div>
+      <div class="fullscreen">
+        <i class="iconfont v-fullscreen">&#xe7a6;</i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="VideoPlayer.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
