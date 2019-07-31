@@ -8,6 +8,7 @@ const icons = {
 
 class VideoPlayer {
   constructor(playerElement) {
+    this.moving = false;
     this.$audio = document.querySelector(playerElement);
     this.$videoContainer = document.querySelector('.video-container');
     this.$audio.autoplay = true;
@@ -16,10 +17,12 @@ class VideoPlayer {
 
     this.$controller = document.querySelector('.video-container .controller');
     this.$playButton = this.$controller.querySelector('.play-button');
+    this.$progressBox = this.$controller.querySelector('.progress-box');
     this.$progress = this.$controller.querySelector('.progress-bar');
     this.$soundBar = this.$controller.querySelector('.sound-bar');
     this.$fullscreenButton = this.$controller.querySelector('.fullscreen');
-    this.statusClock = "";
+    this.$pin = this.$progress.querySelector('.progress-bar__circle');
+    this.statusClock = '';
     this.bindEvent();
   }
 
@@ -81,8 +84,8 @@ class VideoPlayer {
       pin.style.left = event.offsetX + 'px';
       bar.style.width = event.offsetX + 'px';
     });
-    this.$fullscreenButton.addEventListener('click', event => {
-      if(this.$fullscreenButton.classList.contains('open')) {
+    this.$fullscreenButton.addEventListener('click', () => {
+      if (this.$fullscreenButton.classList.contains('open')) {
         this.$fullscreenButton.classList.remove('open');
         this.$videoContainer.classList.remove('open');
       } else {
@@ -90,6 +93,26 @@ class VideoPlayer {
         this.$videoContainer.classList.add('open');
         this.$audio.requestFullscreen();
       }
+    });
+    this.$pin.addEventListener('mousedown', () => {
+      this.moving = true;
+    });
+    this.$progressBox.addEventListener('mousemove', event => {
+      event.stopPropagation();
+      if (this.moving) {
+        clearInterval(this.moveClock);
+        const barWidth = parseFloat(window.getComputedStyle(this.$progress).width);
+        let percent = event.offsetX / barWidth;
+        this.$audio.currentTime = this.$audio.duration * percent;
+        const pin = this.$progress.querySelector('.progress-bar__circle');
+        const bar = this.$progress.querySelector('.progress-bar__current');
+        pin.style.left = event.offsetX + 'px';
+        bar.style.width = event.offsetX + 'px';
+
+      }
+    });
+    document.addEventListener('mouseup', () => {
+      this.moving = false
     })
   }
 }
