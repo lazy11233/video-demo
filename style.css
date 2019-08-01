@@ -89,12 +89,27 @@
   width: 30px;
 }
 .controller .progress-box {
+  position: relative;
   width: 80%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+.controller .progress-box .progress-box__shadow {
+  display: none;
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: transparent;
+  cursor: pointer;
+  z-index: 10;
+}
+
 .controller .progress-bar {
   position: relative;
   width: 100%;
@@ -121,6 +136,7 @@
   width: 50%;
   border-radius: 8px;
   background: #c0c0c0;
+  z-index: 1;
 }
 .controller .duration {
   display: flex;

@@ -17,7 +17,7 @@ class VideoPlayer {
 
     this.$controller = document.querySelector('.video-container .controller');
     this.$playButton = this.$controller.querySelector('.play-button');
-    this.$progressBox = this.$controller.querySelector('.progress-box');
+    this.$progressBox = this.$controller.querySelector('.progress-box .progress-box__shadow');
     this.$progress = this.$controller.querySelector('.progress-bar');
     this.$soundBar = this.$controller.querySelector('.sound-bar');
     this.$fullscreenButton = this.$controller.querySelector('.fullscreen');
@@ -96,6 +96,7 @@ class VideoPlayer {
     });
     this.$pin.addEventListener('mousedown', () => {
       this.moving = true;
+      this.$progressBox.style.display = 'block'
     });
     this.$progressBox.addEventListener('mousemove', event => {
       event.stopPropagation();
@@ -113,6 +114,7 @@ class VideoPlayer {
     });
     document.addEventListener('mouseup', () => {
       this.moving = false
+      this.$progressBox.style.display = 'none'
     })
   }
 }
