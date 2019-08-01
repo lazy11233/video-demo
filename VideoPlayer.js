@@ -109,7 +109,6 @@ class VideoPlayer {
         const bar = this.$progress.querySelector('.progress-bar__current');
         pin.style.left = event.offsetX + 'px';
         bar.style.width = event.offsetX + 'px';
-
       }
     });
     document.addEventListener('mouseup', () => {
